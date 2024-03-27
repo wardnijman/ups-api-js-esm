@@ -70,5 +70,5 @@ UPS API for Javascript is currently licensed under the [Apache License, Version 
 
 ## Build Automation
 
-[![npm Status](https://img.shields.io/npm/v/ups-api.svg)](https://www.npmjs.com/package/@kitaety/ups-api)
+[![npm Status](https://img.shields.io/npm/v/@kitaety/ups-api.svg)](https://www.npmjs.com/package/@kitaety/ups-api)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/)
