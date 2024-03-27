@@ -4,3 +4,5 @@ export * from "./paperless";
 export * from "./pickup";
 export * from "./shipment";
 export * from "./tracking";
+export * from "./addressValidation";
+export * from "./rating";

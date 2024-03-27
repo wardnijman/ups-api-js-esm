@@ -5,16 +5,20 @@ import { PaperlessAPI } from "./paperless";
 import { PickupAPI } from "./pickup";
 import { ShipmentAPI } from "./shipment";
 import { TrackingAPI } from "./tracking";
+import { AddressValidationApi } from "./addressValidation";
+import { RatingApi } from "./rating";
 
 /**
  * The base auth URL used for the OAuth token request.
  */
 const AUTH_URL = "https://onlinetools.ups.com/";
+const TEST_AUTH_URL = "https://wwwcie.ups.com/";
 
 /**
  * The base URL used for API requests.
  */
 const BASE_URL = "https://onlinetools.ups.com/api/";
+const TEST_BASE_URL = "https://wwwcie.ups.com/api/";
 
 /**
  * The version of the API to use.
@@ -26,18 +30,27 @@ const API_VERSION = "v1";
  */
 const GRANT_TYPE = "client_credentials";
 
+/**
+ * The environment
+ */
+const PRODUCTION_ENVIRONMENT = "production";
+
 export class API extends mix(BaseAPI).with(
     LocatorAPI,
     PaperlessAPI,
     PickupAPI,
     ShipmentAPI,
-    TrackingAPI
+    TrackingAPI,
+    AddressValidationApi,
+    RatingApi
 ) {
     constructor(kwargs = {}) {
         super(kwargs);
+        const environment = kwargs.environment === undefined ? PRODUCTION_ENVIRONMENT : kwargs.environment;
 
-        this.authUrl = conf("UPS_AUTH_URL", AUTH_URL);
-        this.baseUrl = conf("UPS_BASE_URL", BASE_URL);
+        this.environment = conf("UPS_ENVIRONMENT", environment);
+        this.authUrl = conf("UPS_AUTH_URL", environment === PRODUCTION_ENVIRONMENT ? AUTH_URL : TEST_AUTH_URL);
+        this.baseUrl = conf("UPS_BASE_URL", environment === PRODUCTION_ENVIRONMENT ? BASE_URL : TEST_BASE_URL);
         this.version = conf("UPS_API_VERSION", API_VERSION);
         this.clientId = conf("UPS_CLIENT_ID", null);
         this.clientSecret = conf("UPS_CLIENT_SECRET", null);
