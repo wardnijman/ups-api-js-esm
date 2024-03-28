@@ -19,6 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *
 
+## [1.0.7]
+
+### Fixed
+
+* Fix setting of the ResidentialAddressIndicator flag
+
 ## [1.0.6]
 
 ### Added

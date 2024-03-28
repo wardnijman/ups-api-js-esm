@@ -104,7 +104,7 @@ export const RatingApi = superclass =>
                 StateProvinceCode: address.stateOrProvinceCode,
                 PostalCode: address.postalCode,
                 CountryCode: address.countryCode,
-                ResidentialAddressIndicator: address.residential
+                ResidentialAddressIndicator: address.residential ? "" : undefined
             };
         }
     };
