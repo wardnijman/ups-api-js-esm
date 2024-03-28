@@ -46,11 +46,18 @@ export class API extends mix(BaseAPI).with(
 ) {
     constructor(kwargs = {}) {
         super(kwargs);
-        const environment = kwargs.environment === undefined ? PRODUCTION_ENVIRONMENT : kwargs.environment;
+        const environment =
+            kwargs.environment === undefined ? PRODUCTION_ENVIRONMENT : kwargs.environment;
 
         this.environment = conf("UPS_ENVIRONMENT", environment);
-        this.authUrl = conf("UPS_AUTH_URL", environment === PRODUCTION_ENVIRONMENT ? AUTH_URL : TEST_AUTH_URL);
-        this.baseUrl = conf("UPS_BASE_URL", environment === PRODUCTION_ENVIRONMENT ? BASE_URL : TEST_BASE_URL);
+        this.authUrl = conf(
+            "UPS_AUTH_URL",
+            environment === PRODUCTION_ENVIRONMENT ? AUTH_URL : TEST_AUTH_URL
+        );
+        this.baseUrl = conf(
+            "UPS_BASE_URL",
+            environment === PRODUCTION_ENVIRONMENT ? BASE_URL : TEST_BASE_URL
+        );
         this.version = conf("UPS_API_VERSION", API_VERSION);
         this.clientId = conf("UPS_CLIENT_ID", null);
         this.clientSecret = conf("UPS_CLIENT_SECRET", null);

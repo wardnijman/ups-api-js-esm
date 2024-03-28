@@ -19,6 +19,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 *
 
+## [1.0.6]
+
+### Added
+
+* Address Validation API
+* Rating API
+
+### Changed
+
+* Update README.md file. Add a list of available methods. Add more code examples.
+
 ## [1.0.3] - 2023-11-29
 
 ### Fixed

@@ -1,13 +1,15 @@
+export const ADDRESS_VALIDATION_REQUEST_OPTIONS = {
+    AddressValidation: 1,
+    AddressClassification: 2,
+    AddressValidationAndClassification: 3
+};
+
 export const AddressValidationApi = superclass =>
     class extends superclass {
         /**
          * Gets the tracking information for an existing shipment.
          *
-         * @param {Number} requestoption Identifies the optional processing to be performed. If not present or invalid value then an error will be sent back.
-                Valid values:
-                1 - Address Validation
-                2 - Address Classification
-                3 - Address Validation and Address Classification.
+         * @param {ADDRESS_VALIDATION_REQUEST_OPTIONS} requestoption Identifies the optional processing to be performed. If not present or invalid value then an error will be sent back.
          * @param {Object} address Address.
          * @param {String} address.consigneeName Name of business, company or person.
          * @param {String} address.attentionName Name of the building.
@@ -24,7 +26,16 @@ export const AddressValidationApi = superclass =>
          * @see https://www.ups.com/upsdeveloperkit?loc=en_US
          */
         async addressValidation(requestoption, address, options = {}) {
-            const { consigneeName, attentionName, addressLine, addressLine2, city, postalCode, stateCode, countryCode } = address;
+            const {
+                consigneeName,
+                attentionName,
+                addressLine,
+                addressLine2,
+                city,
+                postalCode,
+                stateCode,
+                countryCode
+            } = address;
             const url = `${this.baseUrl}addressvalidation/${this.version}/${requestoption}`;
 
             const payload = this._buildAddressValidationPayload(
@@ -60,10 +71,7 @@ export const AddressValidationApi = superclass =>
                     AddressKeyFormat: {
                         ConsigneeName: consigneeName,
                         AttentionName: attentionName,
-                        AddressLine: [
-                            addressLine,
-                            addressLine2
-                        ],
+                        AddressLine: [addressLine, addressLine2],
                         PoliticalDivision2: city,
                         PoliticalDivision1: stateCode,
                         PostcodePrimaryLow: postalCode,

@@ -1,114 +1,8 @@
-export const PACKAGE_TYPES = {
-    Unknown: {
-        Code: "00",
-        Description: "Unknown"
-    },
-    UPSLetter: {
-        Code: "01",
-        Description: "UPS Letter"
-    },
-    Package: {
-        Code: "02",
-        Description: "Package"
-    },
-    Tube: {
-        Code: "03",
-        Description: "Tube"
-    },
-    Pak: {
-        Code: "04",
-        Description: "Pak"
-    },
-    ExpressBox: {
-        Code: "21",
-        Description: "Express Box"
-    },
-    KG25Box: {
-        Code: "24",
-        Description: "25KG Box"
-    },
-    KG10Box: {
-        Code: "25",
-        Description: "10KG Box"
-    },
-    Pallet: {
-        Code: "30",
-        Description: "Pallet"
-    },
-    SmallExpressBox: {
-        Code: "2a",
-        Description: "Small Express Box"
-    },
-    MediumExpressBox: {
-        Code: "2b",
-        Description: "Medium Express Box"
-    },
-    LargeExpressBox: {
-        Code: "2c",
-        Description: "Large Express Box"
-    }
-};
-
-export const DIMENSIONS_UNIT_OF_MEASUREMENTS = {
-    Inches: {
-        Code: "IN",
-        Description: "Inches"
-    },
-    Centimeters: {
-        Code: "CM",
-        Description: "Centimeters"
-    }
-};
-
-export const PACKAGE_WEIGHT_UNIT_OF_MEASUREMENTS = {
-    Pounds: {
-        Code: "LBS",
-        Description: "Pounds"
-    },
-    Kilograms: {
-        Code: "KGS",
-        Description: "Kilograms"
-    },
-    Ounces: {
-        Code: "OZS",
-        Description: "Ounces"
-    }
-};
-
 export const RATES_REQUEST_OPTIONS = {
     Rate: "rate",
     Shop: "shop",
     RateTimeInTransit: "ratetimeintransit",
     ShopTimeInTransit: "shoptimeintransit"
-};
-
-export const PICKUP_TYPES = {
-    DailyPickup: {
-        Code: "01",
-        Description: "Daily Pickup"
-    },
-    CustomerCounter: {
-        Code: "03",
-        Description: "Customer Counter"
-    }
-};
-
-export const CUSTOMER_CLASSIFICATION = {
-    RatesAssociatedWithShipperNumber: {
-        Code: "00",
-        Description: "Rates Associated with Shipper Number"
-    }
-};
-
-export const RATES_SERVICES = {
-    Ground: {
-        Code: "03",
-        Description: "Ground"
-    },
-    WorldwideExpedited: {
-        Code: "08",
-        Description: "Worldwide Expedited"
-    }
 };
 
 const NEGOTIATED_RATING_OPTIONS = {
@@ -141,7 +35,16 @@ export const RatingApi = superclass =>
         }
 
         _buildRatesPayload(payload) {
-            const { shipper, shipTo, negotiatedRates, pickupType, service, customerClassification, shipFrom, packageData } = payload;
+            const {
+                shipper,
+                shipTo,
+                negotiatedRates,
+                pickupType,
+                service,
+                customerClassification,
+                shipFrom,
+                packageData
+            } = payload;
 
             const _payload = {
                 RateRequest: {
@@ -156,7 +59,9 @@ export const RatingApi = superclass =>
                         ShipTo: this._buildShipPayload(shipTo),
                         ShipFrom: this._buildShipPayload(shipFrom),
                         Package: this._buildPackagePayload(packageData),
-                        ShipmentRatingOptions: negotiatedRates ? NEGOTIATED_RATING_OPTIONS : undefined
+                        ShipmentRatingOptions: negotiatedRates
+                            ? NEGOTIATED_RATING_OPTIONS
+                            : undefined
                     }
                 }
             };
@@ -194,10 +99,7 @@ export const RatingApi = superclass =>
 
         _buildAddressPayload(address) {
             return {
-                AddressLine: [
-                    address.line1,
-                    address.line2
-                ],
+                AddressLine: [address.line1, address.line2],
                 City: address.city,
                 StateProvinceCode: address.stateOrProvinceCode,
                 PostalCode: address.postalCode,
