@@ -44,6 +44,7 @@
         "watch": "rollup -c -w"
     },
     "dependencies": {
+        "cjstoesm": "^2.1.2",
         "yonius": "^0.11.5"
     },
     "devDependencies": {

@@ -48,7 +48,6 @@ export const PACKAGE_TYPES = {
         Description: "Large Express Box"
     }
 };
-
 export const DIMENSIONS_UNIT_OF_MEASUREMENTS = {
     Inches: {
         Code: "IN",
@@ -59,7 +58,6 @@ export const DIMENSIONS_UNIT_OF_MEASUREMENTS = {
         Description: "Centimeters"
     }
 };
-
 export const PACKAGE_WEIGHT_UNIT_OF_MEASUREMENTS = {
     Pounds: {
         Code: "LBS",
